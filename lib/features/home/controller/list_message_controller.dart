@@ -5,21 +5,21 @@ import 'package:chat_app/models/list_message_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final listOfMessageControllerProvider =
-    StateNotifierProvider<ComplaintController, List<ListOfMessage>>((ref) {
+    StateNotifierProvider<ListMessageController, List<ListOfMessage>>((ref) {
   final complaintRepo = ref.read(listMessageRepoProvider);
-  return ComplaintController(
+  return ListMessageController(
       complaint: ListOfMessage(), repo: complaintRepo, ref: ref);
 });
 
-class ComplaintController extends StateNotifier<List<ListOfMessage>> {
+class ListMessageController extends StateNotifier<List<ListOfMessage>> {
   final ListMessageRepo _repo;
   final Ref _ref;
 
-  ComplaintController(
-      {required ListOfMessage complaint,
-      required ListMessageRepo repo,
-      required Ref ref})
-      : _ref = ref,
+  ListMessageController({
+    required ListOfMessage complaint,
+    required ListMessageRepo repo,
+    required Ref ref,
+  })  : _ref = ref,
         _repo = repo,
         super([]);
   Future<void> getListOfMessage() async {
@@ -42,5 +42,11 @@ class ComplaintController extends StateNotifier<List<ListOfMessage>> {
       log('Error: $e');
       log('Stacktrace: $stacktrace');
     }
+  }
+
+  void updateMessages(List<dynamic> newMessages) {
+    final updatedMessages =
+        newMessages.map((message) => ListOfMessage.fromJson(message)).toList();
+    state = updatedMessages;
   }
 }

@@ -25,7 +25,7 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _socketService.connect(widget.sender);
+    // _socketService.connect(widget.sender);
     _socketService.socket.onConnect((_) {
       setState(() => _isConnected = true);
     });

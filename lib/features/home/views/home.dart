@@ -45,7 +45,9 @@ class ProjectFormState extends State<ProjectForm> {
         context,
         MaterialPageRoute(
           // builder: (context) => ChatScreen(sender: 'User1', receiver: 'User2'),
-          builder: (context) => ListOfChatsViews(),
+          builder: (context) => ListOfChatsViews(
+            userId: '',
+          ),
         ),
       );
     }
@@ -63,7 +65,9 @@ class ProjectFormState extends State<ProjectForm> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ListOfChatsViews(),
+                  builder: (context) => ListOfChatsViews(
+                    userId: "678f7024f8389c9944f10fc8",
+                  ),
                 ),
               );
             },

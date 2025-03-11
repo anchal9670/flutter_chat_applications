@@ -10,9 +10,11 @@ class MessageController extends StateNotifier<List<Message>> {
 
   MessageController(this._repo) : super([]);
 
-  Future<void> getMessage() async {
+  Future<void> getMessage(
+      {required String senderDocId, required String receiverDocId}) async {
     try {
-      final result = await _repo.getMessage();
+      final result = await _repo.getMessage(
+          senderDocId: senderDocId, receiverDocId: receiverDocId);
       result.fold(
         (failure) {
           log('Failure: $failure');
@@ -36,6 +38,7 @@ class MessageController extends StateNotifier<List<Message>> {
       senderDocId: data['senderDocId'],
       receiverDocId: data['receiverDocId'],
       message: data['message'],
+      createdAt: DateTime.now(),
     );
     state = [...state, message];
   }

@@ -12,6 +12,7 @@ class ListOfMessage {
   final String? secondPersonId;
   final String? secondPersonName;
   final String? secondPersonAvatar;
+  final int? unreadCount;
 
   ListOfMessage({
     this.lastMessage,
@@ -20,6 +21,7 @@ class ListOfMessage {
     this.secondPersonId,
     this.secondPersonName,
     this.secondPersonAvatar,
+    this.unreadCount,
   });
 
   ListOfMessage copyWith({
@@ -29,6 +31,7 @@ class ListOfMessage {
     String? secondPersonId,
     String? secondPersonName,
     String? secondPersonAvatar,
+    int? unreadCount,
   }) =>
       ListOfMessage(
         lastMessage: lastMessage ?? this.lastMessage,
@@ -37,6 +40,7 @@ class ListOfMessage {
         secondPersonId: secondPersonId ?? this.secondPersonId,
         secondPersonName: secondPersonName ?? this.secondPersonName,
         secondPersonAvatar: secondPersonAvatar ?? this.secondPersonAvatar,
+        unreadCount: unreadCount ?? this.unreadCount,
       );
 
   factory ListOfMessage.fromJson(Map<String, dynamic> json) => ListOfMessage(
@@ -48,6 +52,7 @@ class ListOfMessage {
         secondPersonId: json["secondPersonId"],
         secondPersonName: json["secondPersonName"],
         secondPersonAvatar: json["secondPersonAvatar"],
+        unreadCount: json["unreadCount"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +62,6 @@ class ListOfMessage {
         "secondPersonId": secondPersonId,
         "secondPersonName": secondPersonName,
         "secondPersonAvatar": secondPersonAvatar,
+        "unreadCount": unreadCount,
       };
 }
